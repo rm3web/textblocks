@@ -14,6 +14,14 @@ Thus, pre-conversions, like converting markdown to HTML, would happen only when 
 
 You can accumulate Text Block Nodes into a multi-lingual collection or into a list of sections.
 
+## Supported input formats
+
+ * 'plainishtext' - Escapes text to HTML For display
+ * 'atxplaintext' - Converts along the headings to seperate sections
+ * 'markdown' - Markdown
+
+atxplaintext may eventually go away.. it's there to exercise the auto-splitting for the time being.  And there's no way to input html.
+
 ## Do I care?
 
 Probably not.  It's not done yet.  It's been lying around on my HD for a long while now and I figured it's a discrete open-sourceable chunk.
