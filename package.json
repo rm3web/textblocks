@@ -1,0 +1,12 @@
+{ "name" : "textblocks",
+  "description" : "A library for slinging blocks of text",
+  "main" : "./lib/textblock.js",
+  "dependencies": {
+	"async": ">=0.1.22",
+	"markdown": ">=0.4.0"
+  },
+  "devDependencies": {
+	"whiskey": ">=0.6.10",
+	"nodelint": "=0.6.2"
+  }
+}
