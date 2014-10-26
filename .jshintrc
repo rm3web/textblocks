@@ -1,0 +1,9 @@
+{
+  "trailing": true,
+  "indent": 2,
+  "curly": true,
+  "multistr": true,
+  "latedef": true,
+  "undef": true,
+  "node": true
+}

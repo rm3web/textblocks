@@ -1,13 +1,24 @@
-{ "name" : "textblocks",
-  "description" : "A library for slinging blocks of text",
-  "main" : "./lib/textblock.js",
-  "version": "0.0.1",
+{
+  "name": "textblocks",
+  "description": "A library for slinging blocks of text",
+  "main": "./lib/textblock.js",
+  "version": "0.0.2",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:wirehead/textblocks.git"
+  },
   "dependencies": {
-	"async": ">=0.1.22",
-	"markdown": ">=0.4.0"
+    "async": ">=0.1.22",
+    "markdown": ">=0.4.0"
   },
   "devDependencies": {
-	"whiskey": ">=0.6.10",
-	"nodelint": "=0.6.2"
+    "tape": "~3.0.1",
+    "jshint": "~2.5.5"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/tape tests/*.js",
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/tape tests/*.js",
+    "lint": "./node_modules/.bin/jshint lib tests",
+    "docs": "./node_modules/.bin/jsdox -A --output ./docs/ lib"
   }
 }
