@@ -32,6 +32,8 @@ I'd say "Patches welcome" but that's too passive-aggressive.
 
 Patches welcome! :)
 
+[![Build Status](https://travis-ci.org/wirehead/textblocks.svg?branch=master)](https://travis-ci.org/wirehead/textblocks)
+
 ## License?
 
 BSD, see LICENSE.txt
