@@ -5,5 +5,8 @@
   "multistr": true,
   "latedef": true,
   "undef": true,
-  "node": true
+  "node": true,
+  "mocha": true,
+  "futurehostile": true,
+  "globals": {"context": false}
 }

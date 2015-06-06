@@ -12,14 +12,15 @@
     "markdown": "~0.5.0"
   },
   "devDependencies": {
-    "tape": "~3.0.1",
-    "jshint": "~2.5.5",
-    "jsdox": "~0.4.3",
-    "istanbul": "~0.3.2"
+    "chai": "^3.0.0",
+    "istanbul": "~0.3.14",
+    "jsdox": "~0.4.9",
+    "jshint": "~2.8.0",
+    "mocha": "^2.2.5"
   },
   "scripts": {
-    "test": "./node_modules/.bin/tape tests/*.js",
-    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/tape tests/*.js",
+    "test": "./node_modules/.bin/mocha tests/*.js",
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha tests/*.js",
     "lint": "./node_modules/.bin/jshint lib tests",
     "docs": "./node_modules/.bin/jsdox -A --output ./docs/ lib"
   }
