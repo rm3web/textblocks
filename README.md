@@ -72,7 +72,7 @@ If you'd like to submit a PR:
  * Unless you say otherwise, I'm assuming "maintainer-fixes" style of merging, where I fix any quibbles and potentially make minor tweaks.  If you specify "maintainer-reviews", I'll maintain a list of things that I've identified for you to change.
  * If you've got a major patch in mind that's larger than an easily-mergable patch, you might consider writing up a blueprint describing what you want to do.
 
-Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms -- see code_of_conduct.md
+Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms -- see [code of conduct](code_of_conduct.md)
 
 ## License?
 
