@@ -1,6 +1,6 @@
 # Text Blocks
 
-[![Build Status](https://travis-ci.org/wirehead/textblocks.svg?branch=master)](https://travis-ci.org/wirehead/textblocks)
+[![Build Status](https://travis-ci.org/wirehead/textblocks.svg?branch=master)](https://travis-ci.org/wirehead/textblocks)[![Dependency Status](https://david-dm.org/wirehead/textblocks.svg)](https://david-dm.org/wirehead/textblocks)
 
 While slinging structured text, it's kinda nice to be able to not have to be too concerned with exactly how your text is formatted, so that you can just say "Hey, this area's a structured text block" and not worry if the user wants to publish their content in Markdown or HTML or whatever.  You can kinda make this work with XHTML + XML Namespaces + XML processing code, but I wrote some code that worked that way and it was messy and I could never make it especially fast.
 
