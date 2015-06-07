@@ -9,6 +9,38 @@ var awesome = "\uD835\uDC9C\u0077\u0065\u0073\u006F\u006D\u0065";
 
 
 describe('text_block', function() {
+
+	it('#makeTextBlock should reject invalid blocks', function () {
+		(function () {
+		  var block = textblock.makeTextBlock(awesome,zalgo);
+		}).should.throw('invalid format to make a text block from');
+	});
+
+	it('#validateTextBlock should reject invalid blocks', function () {
+		var inputBlock = {format: 'gonzo',
+			gonzo: 'zalgo'
+		};
+		(function () {
+		  var block = textblock.validateTextBlock(inputBlock);
+		}).should.throw('invalid format for textblock');
+	});
+
+	it('#validateTextBlock should reject non-Objects', function () {
+		var inputBlock = '{"goo":"goo"}';
+		(function () {
+		  var block = textblock.validateTextBlock(inputBlock);
+		}).should.throw('invalid format for textblock');
+	});
+
+	it('#outputTextBlock should reject invalid blocks', function () {
+		var inputBlock = {format: 'gonzo',
+			gonzo: 'zalgo'
+		};
+		(function () {
+		  var out = textblock.outputTextBlock(inputBlock);
+		}).should.throw('invalid format to output');
+	});
+
 	describe('with markdown', function() {
 		var input = '# head\n\nblah\nblah bla#h\n\n# head2\n\nblah2\n\n# head3\n\n## head4';
 		/**
@@ -54,6 +86,15 @@ describe('text_block', function() {
 				block.should.not.have.property('gonzo');
 				block.should.have.property('htmltext');
 				block.htmltext.should.equal('<h1>get</h1>');
+			});
+
+			it ('should throw an exception with no content', function() {
+				var inputBlock = {format: 'markdown',
+					gonzo: 'zalgo'
+				};
+				(function () {
+				  textblock.validateTextBlock(inputBlock);
+				}).should.throw('markdown block has no source');
 			});
 		});
 	});
@@ -107,6 +148,15 @@ describe('text_block', function() {
 				block.should.have.property('htmltext');
 				block.htmltext.should.equal('<div>Test</div>');
 			});
+
+			it ('should throw an exception with no content', function() {
+				var inputBlock = {format: 'html',
+					gonzo: 'zalgo'
+				};
+				(function () {
+				  textblock.validateTextBlock(inputBlock);
+				}).should.throw('html block has neither source nor htmltext');
+			})
 		});
 	});
 
@@ -157,6 +207,15 @@ describe('text_block', function() {
 			var str = textblock.outputTextBlock(block);
 			str.should.equal("<p>" + zalgo + "</p>\n<p>" + awesome + "</p>");
 		});
+
+		it ('should throw an exception with no content', function() {
+			var inputBlock = {format: 'plainishtext',
+				gonzo: 'zalgo'
+			};
+			(function () {
+			  textblock.validateTextBlock(inputBlock);
+			}).should.throw('plainishtext block has no source');
+		});
 	});
 
 	describe('with sections', function() {
@@ -166,8 +225,16 @@ describe('text_block', function() {
 		it('should make sections', function () {
 			var block = textblock.makeTextBlock('&blah\n\nblah','plainishtext');
 			var blocks = textblock.makeTextBlockSection(block);
-			var str = textblock.outputTextBlock(block);
+			var str = textblock.outputTextBlock(blocks);
 			str.should.equal("<p>&amp;blah</p>\n<p>blah</p>");
+		});
+
+		it('should make arrays of sections', function () {
+			var block1 = textblock.makeTextBlock('&blah\n\nblah','plainishtext');
+			var block2 = textblock.makeTextBlock('&blah\n\nblah','plainishtext');
+			var blocks = textblock.makeTextBlockSection([block1, block2]);
+			var str = textblock.outputTextBlock(blocks);
+			str.should.equal("<p>&amp;blah</p>\n<p>blah</p><p>&amp;blah</p>\n<p>blah</p>");
 		});
 
 		describe('#validateTextBlock', function() {
@@ -192,5 +259,16 @@ describe('text_block', function() {
 				block.blocks[1].should.have.property('htmltext');
 			});
 		});
+
+		it ('should throw an exception with an invalid block type', function() {
+			var inputBlock = {format: 'section',
+				blocks: [
+					{format: 'gaga', source: 'gonzo'}
+				]
+			};
+			(function () {
+			  textblock.validateTextBlock(inputBlock);
+			}).should.throw('validating textblock with invalid block type');
+		})
 	});
 });
