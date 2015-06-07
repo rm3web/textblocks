@@ -57,13 +57,13 @@ describe('textblock', function() {
 		it('#outputTextBlock should work', function () {
 			var block = textblock.makeTextBlock(input,'markdown');
 			var str = textblock.outputTextBlock(block);
-			str.should.equal('<h1>head</h1>\n\n<p>blah\nblah bla#h</p>\n\n<h1>head2</h1>\n\n<p>blah2</p>\n\n<h1>head3</h1>\n\n<h2>head4</h2>');
+			str.should.equal('<h1>head</h1>\n<p>blah\nblah bla#h</p>\n<h1>head2</h1>\n<p>blah2</p>\n<h1>head3</h1>\n<h2>head4</h2>\n');
 		});
 
 		it('should handle zalgo unicode weirdness', function() {
 			var block = textblock.makeTextBlock(zalgo + '\n\n' + awesome,'markdown');
 			var str = textblock.outputTextBlock(block);
-			str.should.equal("<p>" + zalgo + "</p>\n\n<p>" + awesome + "</p>");
+			str.should.equal("<p>" + zalgo + "</p>\n<p>" + awesome + "</p>\n");
 		});
 		
 		describe('#validateTextBlock', function() {
@@ -85,7 +85,7 @@ describe('textblock', function() {
 				block.should.have.property('source');
 				block.should.not.have.property('gonzo');
 				block.should.have.property('htmltext');
-				block.htmltext.should.equal('<h1>get</h1>');
+				block.htmltext.should.equal('<h1>get</h1>\n');
 			});
 
 			it ('should throw an exception with no content', function() {
