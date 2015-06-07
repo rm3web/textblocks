@@ -2,26 +2,30 @@
   "name": "textblocks",
   "description": "A library for slinging blocks of text",
   "main": "./lib/textblock.js",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "repository": {
     "type": "git",
     "url": "git@github.com:wirehead/textblocks.git"
   },
   "dependencies": {
-    "async": "~0.9.0",
-    "markdown": "~0.5.0"
+    "async": "^0.9.0",
+    "markdown": "^0.5.0",
+    "sanitize-caja": "^0.1.3",
+    "xss-filters": "^1.2.0"
   },
   "devDependencies": {
     "chai": "^3.0.0",
-    "istanbul": "~0.3.14",
-    "jsdox": "~0.4.9",
-    "jshint": "~2.8.0",
+    "istanbul": "^0.3.14",
+    "jsdox": "^0.4.9",
+    "jshint": "^2.8.0",
+    "matcha": "^0.6.0",
     "mocha": "^2.2.5"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha tests/*.js",
+    "benchmark": "./node_modules/.bin/matcha benchmark/*.js",
     "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha tests/*.js",
-    "lint": "./node_modules/.bin/jshint lib tests",
+    "lint": "./node_modules/.bin/jshint lib tests benchmark",
     "docs": "./node_modules/.bin/jsdox -A --output ./docs/ lib"
   }
 }
