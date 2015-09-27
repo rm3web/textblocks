@@ -269,7 +269,8 @@ describe('textblock', function() {
 		describe('should resolve pragmas', function() {
 			it('in a lone block', function(cb) {
 				var inputblock = {format: 'pragma', query: 'fork', meta: true, spoon: 100};
-				textblock.resolvePragmaBlocks(inputblock, function(block, next){
+				textblock.resolvePragmaBlocks(inputblock, 'goo', function(block, pos, next){
+					pos.should.equal('goo');
 					next(null, {format: 'plainishtext', source: 'blah blah'});
 				}, function(err, block){
 					should.not.exist(err);
@@ -289,7 +290,8 @@ describe('textblock', function() {
 				  {format: 'plainishtext', source: 'candy'}
 				  ]
 				};
-				textblock.resolvePragmaBlocks(inputblock, function(block, next){
+				textblock.resolvePragmaBlocks(inputblock, 'moo', function(block, pos, next){
+					pos.should.equal('moo_0');
 					next(new Error('inserted'));
 				}, function(err, block){
 					should.exist(err);
@@ -305,7 +307,8 @@ describe('textblock', function() {
 				  {format: 'plainishtext', source: 'candy'}
 				  ]
 				};
-				textblock.resolvePragmaBlocks(inputblock, function(block, next){
+				textblock.resolvePragmaBlocks(inputblock, 'moo', function(block, pos, next){
+					pos.should.equal('moo_0');
 					next(null, {format: 'plainishtext', source: 'blah blah'});
 				}, function(err, block){
 					should.not.exist(err);
