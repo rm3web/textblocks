@@ -2,7 +2,7 @@
   "name": "textblocks",
   "description": "A library for slinging blocks of text",
   "main": "./lib/textblock.js",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "repository": {
     "type": "git",
     "url": "git@github.com:wirehead/textblocks.git"

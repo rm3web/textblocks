@@ -116,7 +116,7 @@ suite('textblock#resolvePragmaBlocks', function() {
   };
 
   bench('no pragmas', function(cb) {
-    textblock.resolvePragmaBlocks(sections, function(block, next) {
+    textblock.resolvePragmaBlocks(sections, 'pos', function(block, pos, next) {
       next(null, {format:'html', htmltext: '<div>candy</div>'});
     }, function(err, block) {
       cb(err);
@@ -124,7 +124,7 @@ suite('textblock#resolvePragmaBlocks', function() {
   });
 
   bench('one pragma', function(cb) {
-    textblock.resolvePragmaBlocks(pragma_sections, function(block, next) {
+    textblock.resolvePragmaBlocks(pragma_sections, 'pos', function(block, pos, next) {
       next(null, {format:'html', htmltext: '<div>candy</div>'});
     }, function(err, block) {
       cb(err);
