@@ -19,7 +19,7 @@
     "istanbul": "^0.4.1",
     "jsdox": "^0.4.9",
     "jshint": "^2.8.0",
-    "matcha": "^0.6.0",
+    "matcha": "^0.7.0",
     "mocha": "^2.2.5"
   },
   "scripts": {
