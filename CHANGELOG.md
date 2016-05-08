@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
  - Updated deps
  - eslint instead of jshint
+ - Supported versions are 4.0 and 5.0
 
 ## 0.0.9 - 2016-1-10
 ### Added
