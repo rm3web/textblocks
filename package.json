@@ -22,6 +22,10 @@
     "matcha": "^0.7.0",
     "mocha": "^2.2.5"
   },
+  "engines": {
+    "node": "4.x || 5.x",
+    "npm": "2.x || 3.x"
+  },
   "scripts": {
     "test": "./node_modules/.bin/mocha tests/*.js",
     "benchmark": "./node_modules/.bin/matcha benchmark/*.js",
