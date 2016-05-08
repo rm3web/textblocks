@@ -21,20 +21,20 @@ suite('textblock#makeTextBlock', function() {
 });
 
 suite('textblock#validateTextBlock', function() {
-  var sections = {format: 'section', 
+  var sections = {format: 'section',
     blocks: [
       {format: 'markdown', source: '# head\n\nblah\nblah bla#h\n\n# head2\n\nblah2\n\n# head3\n\n## head4', htmltext: '<h1>head</h1>\n\n<p>blah\nblah bla#h</p>\n\n<h1>head2</h1>\n\n<p>blah2</p>\n\n<h1>head3</h1>\n\n<h2>head4</h2>'},
       {format: 'plainishtext', source: 'candy'},
-      {format: 'html', htmltext: '<h1>head</h1>\n\n<p>blah\nblah bla#h</p>\n\n<h1>head2</h1>\n\n<p>blah2</p>\n\n<h1>head3</h1>\n\n<h2>head4</h2>'},
+      {format: 'html', htmltext: '<h1>head</h1>\n\n<p>blah\nblah bla#h</p>\n\n<h1>head2</h1>\n\n<p>blah2</p>\n\n<h1>head3</h1>\n\n<h2>head4</h2>'}
     ]
   };
 
-  var pragma_sections = {format: 'section', 
+  var pragmaSections = {format: 'section',
     blocks: [
       {format: 'markdown', source: '# head\n\nblah\nblah bla#h\n\n# head2\n\nblah2\n\n# head3\n\n## head4', htmltext: '<h1>head</h1>\n\n<p>blah\nblah bla#h</p>\n\n<h1>head2</h1>\n\n<p>blah2</p>\n\n<h1>head3</h1>\n\n<h2>head4</h2>'},
       {format: 'pragma', source: 'gogogogogosetr', go: 135},
       {format: 'plainishtext', source: 'candy'},
-      {format: 'html', htmltext: '<h1>head</h1>\n\n<p>blah\nblah bla#h</p>\n\n<h1>head2</h1>\n\n<p>blah2</p>\n\n<h1>head3</h1>\n\n<h2>head4</h2>'},
+      {format: 'html', htmltext: '<h1>head</h1>\n\n<p>blah\nblah bla#h</p>\n\n<h1>head2</h1>\n\n<p>blah2</p>\n\n<h1>head3</h1>\n\n<h2>head4</h2>'}
     ]
   };
 
@@ -47,7 +47,7 @@ suite('textblock#validateTextBlock', function() {
   });
 
   bench('pragma_sections', function() {
-    var block = textblock.validateTextBlock(pragma_sections, 
+    var block = textblock.validateTextBlock(pragmaSections,
       function(pragma) {
         return {format:'html', htmltext: ''};
       });
@@ -68,11 +68,11 @@ suite('textblock#validateTextBlock', function() {
 });
 
 suite('textblock#outputTextBlock', function() {
-  var sections = {format: 'section', 
+  var sections = {format: 'section',
     blocks: [
       {format: 'markdown', source: '# head\n\nblah\nblah bla#h\n\n# head2\n\nblah2\n\n# head3\n\n## head4', htmltext: '<h1>head</h1>\n\n<p>blah\nblah bla#h</p>\n\n<h1>head2</h1>\n\n<p>blah2</p>\n\n<h1>head3</h1>\n\n<h2>head4</h2>'},
       {format: 'plainishtext', source: 'candy'},
-      {format: 'html', htmltext: '<h1>head</h1>\n\n<p>blah\nblah bla#h</p>\n\n<h1>head2</h1>\n\n<p>blah2</p>\n\n<h1>head3</h1>\n\n<h2>head4</h2>'},
+      {format: 'html', htmltext: '<h1>head</h1>\n\n<p>blah\nblah bla#h</p>\n\n<h1>head2</h1>\n\n<p>blah2</p>\n\n<h1>head3</h1>\n\n<h2>head4</h2>'}
     ]
   };
 
@@ -98,20 +98,20 @@ suite('textblock#outputTextBlock', function() {
 });
 
 suite('textblock#resolvePragmaBlocks', function() {
-  var sections = {format: 'section', 
+  var sections = {format: 'section',
     blocks: [
       {format: 'markdown', source: '# head\n\nblah\nblah bla#h\n\n# head2\n\nblah2\n\n# head3\n\n## head4', htmltext: '<h1>head</h1>\n\n<p>blah\nblah bla#h</p>\n\n<h1>head2</h1>\n\n<p>blah2</p>\n\n<h1>head3</h1>\n\n<h2>head4</h2>'},
       {format: 'plainishtext', source: 'candy'},
-      {format: 'html', htmltext: '<h1>head</h1>\n\n<p>blah\nblah bla#h</p>\n\n<h1>head2</h1>\n\n<p>blah2</p>\n\n<h1>head3</h1>\n\n<h2>head4</h2>'},
+      {format: 'html', htmltext: '<h1>head</h1>\n\n<p>blah\nblah bla#h</p>\n\n<h1>head2</h1>\n\n<p>blah2</p>\n\n<h1>head3</h1>\n\n<h2>head4</h2>'}
     ]
   };
 
-  var pragma_sections = {format: 'section', 
+  var pragmaSections = {format: 'section',
     blocks: [
       {format: 'markdown', source: '# head\n\nblah\nblah bla#h\n\n# head2\n\nblah2\n\n# head3\n\n## head4', htmltext: '<h1>head</h1>\n\n<p>blah\nblah bla#h</p>\n\n<h1>head2</h1>\n\n<p>blah2</p>\n\n<h1>head3</h1>\n\n<h2>head4</h2>'},
       {format: 'pragma', source: 'gogogogogosetr', go: 135},
       {format: 'plainishtext', source: 'candy'},
-      {format: 'html', htmltext: '<h1>head</h1>\n\n<p>blah\nblah bla#h</p>\n\n<h1>head2</h1>\n\n<p>blah2</p>\n\n<h1>head3</h1>\n\n<h2>head4</h2>'},
+      {format: 'html', htmltext: '<h1>head</h1>\n\n<p>blah\nblah bla#h</p>\n\n<h1>head2</h1>\n\n<p>blah2</p>\n\n<h1>head3</h1>\n\n<h2>head4</h2>'}
     ]
   };
 
@@ -124,7 +124,7 @@ suite('textblock#resolvePragmaBlocks', function() {
   });
 
   bench('one pragma', function(cb) {
-    textblock.resolvePragmaBlocks(pragma_sections, 'pos', function(block, pos, next) {
+    textblock.resolvePragmaBlocks(pragmaSections, 'pos', function(block, pos, next) {
       next(null, {format:'html', htmltext: '<div>candy</div>'});
     }, function(err, block) {
       cb(err);
