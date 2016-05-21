@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
  - Changelog, for the first time
  - Moved git repo.
+
 ### Changed
  - Updated deps
 
@@ -34,6 +35,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
  - Better docs
  - Improved test coverage
  - Checks for invalid textblock structure
+
 ### Changed
  - updated deps
 
@@ -41,6 +43,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
  - Zalgo and awesome unicode tests.
  - JSON payload validation
+
 ### Changed
  - Refactored unit tests using Mocha instead of Tape.
  - updated deps
@@ -48,6 +51,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 0.0.3 - Oct 26, 2014
 ### Removed
  - Async interface
+
 ### Changed
  - updated deps
 
@@ -55,6 +59,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
  - HTML passthrough
  - Documentation
+
 ### Changed
  - updated deps
 
