@@ -1,6 +1,7 @@
 /* global suite */
 /* global bench */
 var textblock = require('../lib/textblock');
+var async = require('async');
 
 suite('textblock#makeTextBlock', function() {
   var markdown = '# head\n\nblah\nblah bla#h\n\n# head2\n\nblah2\n\n# head3\n\n## head4';
@@ -80,20 +81,32 @@ suite('textblock#outputTextBlock', function() {
   var plain = {format: 'plainishtext', source: '<h1>head</h1>\n\n<p>blah\nblah bla#h</p>\n\n<h1>head2</h1>\n\n<p>blah2</p>\n\n<h1>head3</h1>\n\n<h2>head4</h2>'};
   var markdown = {format: 'markdown', source: '# head\n\nblah\nblah bla#h\n\n# head2\n\nblah2\n\n# head3\n\n## head4', htmltext: '<h1>head</h1>\n\n<p>blah\nblah bla#h</p>\n\n<h1>head2</h1>\n\n<p>blah2</p>\n\n<h1>head3</h1>\n\n<h2>head4</h2>'};
 
-  bench('sections', function() {
-    var block = textblock.outputTextBlock(sections);
+  bench('sections', function(callback) {
+    var block = textblock.outputTextBlock(sections, callback);
   });
 
-  bench('html', function() {
-    var block = textblock.outputTextBlock(html);
+  bench('html', function(callback) {
+    var block = textblock.outputTextBlock(html, function(err, text) {
+      async.setImmediate(function() {
+        callback(err, text);
+      });
+    });
   });
 
-  bench('markdown', function() {
-    var block = textblock.outputTextBlock(markdown);
+  bench('markdown', function(callback) {
+    var block = textblock.outputTextBlock(markdown, function(err, text) {
+      async.setImmediate(function() {
+        callback(err, text);
+      });
+    });
   });
 
-  bench('plain', function() {
-    var block = textblock.outputTextBlock(plain);
+  bench('plain', function(callback) {
+    var block = textblock.outputTextBlock(plain, function(err, text) {
+      async.setImmediate(function() {
+        callback(err, text);
+      });
+    });
   });
 });
 

@@ -61,7 +61,13 @@ var outputTextblock = textblock.validateTextBlock(textblock);
 ### How do I output a stored textblock?
 
 ```node
-var outputString = textblock.outputTextBlock(textblock);
+var outputString = textblock.outputTextBlock(textblock, function(err, text) {
+  if (err) {
+    // The render failed
+  } else {
+    console.log(text);
+  }
+});
 ```
 
 ## Is it fast?
@@ -73,6 +79,11 @@ The performance is mostly to do with the underlying Markdown and XSS-prevention 
 The performance goal is to avoid render-time complexity.  If there's expensive DOM traversal (say, finding all of the images and making sure they are set up properly) it needs to be done at the edit-time.
 
 ## Contributing
+
+* `npm run lint` to lint
+* `npm run benchmark` to check the benchmarks
+* `npm test` to test
+* `npm run coverage` to check test coverage
 
 If you've found a bug:
  * Submit away!

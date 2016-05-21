@@ -35,9 +35,10 @@ describe('textblock', function() {
     var inputBlock = {format: 'gonzo',
       gonzo: 'zalgo'
     };
-    (function() {
-      var out = textblock.outputTextBlock(inputBlock);
-    }).should.throw('invalid format to output');
+    textblock.outputTextBlock(inputBlock, function(err, text) {
+      err.should.be.a('error');
+      err.message.should.equal('unknown format: gonzo');
+    });
   });
 
   describe('with markdown', function() {
@@ -55,14 +56,22 @@ describe('textblock', function() {
 
     it('#outputTextBlock should work', function() {
       var block = textblock.makeTextBlock(input,'markdown');
-      var str = textblock.outputTextBlock(block);
-      str.should.equal('<h1>head</h1>\n<p>blah\nblah bla#h</p>\n<h1>head2</h1>\n<p>blah2</p>\n<h1>head3</h1>\n<h2>head4</h2>\n');
+      textblock.outputTextBlock(block, function(err, str) {
+        if (err) {
+          should.fail();
+        }
+        str.should.equal('<h1>head</h1>\n<p>blah\nblah bla#h</p>\n<h1>head2</h1>\n<p>blah2</p>\n<h1>head3</h1>\n<h2>head4</h2>\n');
+      });
     });
 
     it('should handle zalgo unicode weirdness', function() {
       var block = textblock.makeTextBlock(zalgo + '\n\n' + awesome,'markdown');
-      var str = textblock.outputTextBlock(block);
-      str.should.equal("<p>" + zalgo + "</p>\n<p>" + awesome + "</p>\n");
+      textblock.outputTextBlock(block, function(err, str) {
+        if (err) {
+          should.fail();
+        }
+        str.should.equal("<p>" + zalgo + "</p>\n<p>" + awesome + "</p>\n");
+      });
     });
 
     describe('#validateTextBlock', function() {
@@ -104,20 +113,32 @@ describe('textblock', function() {
      */
     it('#makeTextBlock and #outputTextBlock should be a passthrough', function() {
       var block = textblock.makeTextBlock('<div>Test</div>','html');
-      var str = textblock.outputTextBlock(block);
-      str.should.equal("<div>Test</div>");
+      textblock.outputTextBlock(block, function(err, str) {
+        if (err) {
+          should.fail();
+        }
+        str.should.equal("<div>Test</div>");
+      });
     });
 
     it('should preserve zalgo unicode hilarity', function() {
       var block = textblock.makeTextBlock('<div>' + zalgo + awesome + '</div>','html');
-      var str = textblock.outputTextBlock(block);
-      str.should.equal('<div>' + zalgo + awesome + '</div>');
+      textblock.outputTextBlock(block, function(err, str) {
+        if (err) {
+          should.fail();
+        }
+        str.should.equal('<div>' + zalgo + awesome + '</div>');
+      });
     });
 
     it('should not preserve xss hilarity', function() {
       var block = textblock.makeTextBlock('<svg/onload=alert(document.domain)>','html');
-      var str = textblock.outputTextBlock(block);
-      str.should.equal('');
+      textblock.outputTextBlock(block, function(err, str) {
+        if (err) {
+          should.fail();
+        }
+        str.should.equal('');
+      });
     });
 
     describe('#validateTextBlock', function() {
@@ -187,8 +208,12 @@ describe('textblock', function() {
       block.blocks.forEach(function(element) {
         element.format.should.equal('html');
       });
-      var str = textblock.outputTextBlock(block);
-      str.should.equal('<h1>head</h1><p>blah\nblah bla#h\n</p><h1>head2</h1><p>blah2\n</p><h1>head3</h1><p></p><h2>head4</h2><p></p>');
+      textblock.outputTextBlock(block, function(err, str) {
+        if (err) {
+          should.fail();
+        }
+        str.should.equal('<h1>head</h1><p>blah\nblah bla#h\n</p><h1>head2</h1><p>blah2\n</p><h1>head3</h1><p></p><h2>head4</h2><p></p>');
+      });
     });
 
     describe('#validateTextBlock', function() {
@@ -209,8 +234,12 @@ describe('textblock', function() {
      */
     it('should work', function() {
       var block = textblock.makeTextBlock('<p>&blah\n\nblah','plainishtext');
-      var str = textblock.outputTextBlock(block);
-      str.should.equal("<p>&lt;p>&blah</p>\n<p>blah</p>");
+      textblock.outputTextBlock(block, function(err, str) {
+        if (err) {
+          should.fail();
+        }
+        str.should.equal("<p>&lt;p>&blah</p>\n<p>blah</p>");
+      });
     });
 
     /*
@@ -218,8 +247,12 @@ describe('textblock', function() {
      */
     it('should preserve zalgo unicode hilarity', function() {
       var block = textblock.makeTextBlock(zalgo + '\n\n' + awesome,'plainishtext');
-      var str = textblock.outputTextBlock(block);
-      str.should.equal("<p>" + zalgo + "</p>\n<p>" + awesome + "</p>");
+      textblock.outputTextBlock(block, function(err, str) {
+        if (err) {
+          should.fail();
+        }
+        str.should.equal("<p>" + zalgo + "</p>\n<p>" + awesome + "</p>");
+      });
     });
 
     it ('should throw an exception with no content', function() {
@@ -334,16 +367,24 @@ describe('textblock', function() {
     it('should make sections', function() {
       var block = textblock.makeTextBlock('&blah\n\nblah','plainishtext');
       var blocks = textblock.makeTextBlockSection(block);
-      var str = textblock.outputTextBlock(blocks);
-      str.should.equal("<p>&blah</p>\n<p>blah</p>");
+      textblock.outputTextBlock(blocks, function(err, str) {
+        if (err) {
+          should.fail();
+        }
+        str.should.equal("<p>&blah</p>\n<p>blah</p>");
+      });
     });
 
     it('should make arrays of sections', function() {
       var block1 = textblock.makeTextBlock('&blah\n\nblah','plainishtext');
       var block2 = textblock.makeTextBlock('&blah\n\nblah','plainishtext');
       var blocks = textblock.makeTextBlockSection([block1, block2]);
-      var str = textblock.outputTextBlock(blocks);
-      str.should.equal("<p>&blah</p>\n<p>blah</p><p>&blah</p>\n<p>blah</p>");
+      textblock.outputTextBlock(blocks, function(err, str) {
+        if (err) {
+          should.fail();
+        }
+        str.should.equal("<p>&blah</p>\n<p>blah</p><p>&blah</p>\n<p>blah</p>");
+      });
     });
 
     describe('#validateTextBlock', function() {
