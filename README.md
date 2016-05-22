@@ -14,7 +14,7 @@ Enter Text Blocks.
 
 A Text Block is a thin JSON wrapper atop arbitrary markup systems and a ways and means to slice text at the header border.
 
-A Text Block Node is a JSON object with a few properties.  'source' is the source in the format intended for user manipulation -- wikitext, markdown, html, etc. 'htmltext' is the source that has been pre-processed into HTML. 'format' is what format to expect the text in.  'blocks' is the child nodes.
+A Text Block Node is a JSON object with a few properties.  'source' is the source in the format intended for user manipulation -- wikitext, markdown, html, etc. 'htmlslabs' is the source that has been pre-processed into HTML. 'format' is what format to expect the text in.  'blocks' is the child nodes.
 
 Thus, pre-conversions, like converting markdown to HTML, would happen only when the content changes.
 
@@ -25,8 +25,6 @@ You can accumulate Text Block Nodes into a set of sections, where each section c
  * 'plainishtext' - Escapes text to HTML For display
  * 'html' - Accepts HTML, using sanitize-caja to protect from XSS
  * 'markdown' - Markdown
-
-There's atxplaintext, which is probably going to go away.. it's there to exercise the auto-splitting for the time being.
 
 ## [Client-side React editor](https://github.com/rm3web/textblocks-react-editor)
 
@@ -50,9 +48,9 @@ var textblock = textblock.makeTextBlock(markdown,'markdown');
 ```node
 var sections = {format: 'section', 
   blocks: [
-    {format: 'markdown', source: '# head\n\nblah\nblah bla#h\n\n# head2\n\nblah2\n\n# head3\n\n## head4', htmltext: '<h1>head</h1>\n\n<p>blah\nblah bla#h</p>\n\n<h1>head2</h1>\n\n<p>blah2</p>\n\n<h1>head3</h1>\n\n<h2>head4</h2>'},
-    {format: 'plainishtext', source: 'candy'},
-    {format: 'html', htmltext: '<h1>head</h1>\n\n<p>blah\nblah bla#h</p>\n\n<h1>head2</h1>\n\n<p>blah2</p>\n\n<h1>head3</h1>\n\n<h2>head4</h2>'},
+    {format: 'markdown', source: '# head\n\nblah\nblah bla#h\n\n# head2\n\nblah2\n\n# head3\n\n## head4', htmlslabs: ['<h1>head</h1>\n\n<p>blah\nblah bla#h</p>\n\n<h1>head2</h1>\n\n<p>blah2</p>\n\n<h1>head3</h1>\n\n<h2>head4</h2>']},
+    {format: 'plainishtext', source: 'candy', htmlslabs:['candy']},
+    {format: 'html', htmlslabs: ['<h1>head</h1>\n\n<p>blah\nblah bla#h</p>\n\n<h1>head2</h1>\n\n<p>blah2</p>\n\n<h1>head3</h1>\n\n<h2>head4</h2>']},
   ]
 };
 var outputTextblock = textblock.validateTextBlock(textblock);

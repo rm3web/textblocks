@@ -51,7 +51,7 @@ describe('textblock', function() {
       var block = textblock.makeTextBlock(input,'markdown');
       block.format.should.equal('markdown');
       block.should.have.property('source');
-      block.should.have.property('htmltext');
+      block.should.have.property('htmlslabs');
     });
 
     it('#outputTextBlock should work', function() {
@@ -81,7 +81,7 @@ describe('textblock', function() {
         block.should.have.property('format');
         block.format.should.equal('markdown');
         block.should.have.property('source');
-        block.should.have.property('htmltext');
+        block.should.have.property('htmlslabs');
       });
 
       it ('should remove bad keys', function() {
@@ -92,8 +92,8 @@ describe('textblock', function() {
         block.format.should.equal('markdown');
         block.should.have.property('source');
         block.should.not.have.property('gonzo');
-        block.should.have.property('htmltext');
-        block.htmltext.should.equal('<h1>get</h1>\n');
+        block.should.have.property('htmlslabs');
+        block.htmlslabs[0].should.equal('<h1>get</h1>\n');
       });
 
       it ('should throw an exception with no content', function() {
@@ -147,8 +147,8 @@ describe('textblock', function() {
         var block = textblock.validateTextBlock(inputblock);
         block.should.have.property('format');
         block.format.should.equal('html');
-        block.should.not.have.property('source');
-        block.should.have.property('htmltext');
+        block.should.have.property('source');
+        block.should.have.property('htmlslabs');
       });
 
       it ('should remove bad keys', function() {
@@ -157,22 +157,22 @@ describe('textblock', function() {
         var block = textblock.validateTextBlock(inputblock);
         block.should.have.property('format');
         block.format.should.equal('html');
-        block.should.not.have.property('source');
+        block.should.have.property('source');
         block.should.not.have.property('gonzo');
-        block.should.have.property('htmltext');
-        block.htmltext.should.equal('<div>Test</div>');
+        block.should.have.property('htmlslabs');
+        block.htmlslabs[0].should.equal('<div>Test</div>');
       });
 
       it ('should also accept htmltext', function() {
         var inputblock = {format: 'html',
-           htmltext: '<div>Test</div>'};
+           source: '<div>Test</div>'};
         var block = textblock.validateTextBlock(inputblock);
         block.should.have.property('format');
         block.format.should.equal('html');
-        block.should.not.have.property('source');
+        block.should.have.property('source');
         block.should.not.have.property('gonzo');
-        block.should.have.property('htmltext');
-        block.htmltext.should.equal('<div>Test</div>');
+        block.should.have.property('htmlslabs');
+        block.htmlslabs[0].should.equal('<div>Test</div>');
       });
 
       it('should prevent xss hilarity', function() {
@@ -180,8 +180,8 @@ describe('textblock', function() {
         var block = textblock.validateTextBlock(inBlock);
         block.should.have.property('format');
         block.format.should.equal('html');
-        block.should.have.property('htmltext');
-        block.htmltext.should.equal('');
+        block.should.have.property('htmlslabs');
+        block.htmlslabs[0].should.equal('');
       });
 
       it ('should throw an exception with no content', function() {
@@ -191,38 +191,6 @@ describe('textblock', function() {
         (function() {
           textblock.validateTextBlock(inputBlock);
         }).should.throw('html block has neither source nor htmltext');
-      });
-    });
-  });
-
-  describe('with atxplaintext', function() {
-    /**
-     * Test that we can input 'atxplaintext' and that it turns four sections
-     * into individual text blocks
-     */
-    it('should work', function() {
-      var input = '# head\n\nblah\nblah bla#h\n# head2\n\nblah2\n# head3\n## head4';
-      var block = textblock.makeTextBlock(input,'atxplaintext');
-      block.format.should.equal('section');
-      block.blocks.length.should.equal(4);
-      block.blocks.forEach(function(element) {
-        element.format.should.equal('html');
-      });
-      textblock.outputTextBlock(block, function(err, str) {
-        if (err) {
-          should.fail();
-        }
-        str.should.equal('<h1>head</h1><p>blah\nblah bla#h\n</p><h1>head2</h1><p>blah2\n</p><h1>head3</h1><p></p><h2>head4</h2><p></p>');
-      });
-    });
-
-    describe('#validateTextBlock', function() {
-      it ('should work', function() {
-        var inputblock = {format: 'plainishtext', source: 'twt'};
-        var block = textblock.validateTextBlock(inputblock);
-        block.should.have.property('format');
-        block.format.should.equal('plainishtext');
-        block.should.have.property('source');
       });
     });
   });
@@ -403,10 +371,10 @@ describe('textblock', function() {
         block.should.not.have.property('htmltext');
         block.should.not.have.property('maxnum');
         block.blocks[0].should.have.property('format');
-        block.blocks[0].should.not.have.property('htmltext');
+        block.blocks[0].should.have.property('htmlslabs');
         block.blocks[0].should.have.property('source');
         block.blocks[1].should.have.property('format');
-        block.blocks[1].should.have.property('htmltext');
+        block.blocks[1].should.have.property('htmlslabs');
       });
     });
 

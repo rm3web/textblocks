@@ -4,10 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 ### Changed
+ - BREAKING: Storage format now based on slabs.  Instead of storing just a single string for the 'htmltext' field, we now store an array of strings in the 'htmlslabs' field.
  - BREAKING: Restoring async interface.
  - Updated deps
  - eslint instead of jshint
  - Supported versions of node.js are 4.0 and 5.0
+
+## Removed
+ - atxplaintext
 
 ## 0.0.9 - 2016-1-10
 ### Added
