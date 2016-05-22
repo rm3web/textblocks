@@ -10,7 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
  - eslint instead of jshint
  - Supported versions of node.js are 4.0 and 5.0
 
-## Removed
+### Removed
  - atxplaintext
 
 ## 0.0.9 - 2016-1-10
