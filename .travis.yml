@@ -1,5 +1,14 @@
 language: node_js
 node_js:
-  - "4.0"
-  - "5.0"
+- '4.0'
+- '5.0'
 script: npm run travis
+deploy:
+  provider: npm
+  email: wh-npm@wirewd.com
+  api_key:
+    secure: VHiV+QeurfyBNh21RHiROurgVfJuU7Gu+IrfzBbMEUAsZy1FGR63YutLvBuYuSFC/ZnR+1exNkttAhvMJhBbhma8m7rP001iu45+E3OYHdegLMSIeB4usGolCOEAS4cnM19qOiVuUbsZlMk1A7dBmhkBw/Tk4W1d9dZ0Vsu880U=
+  on:
+    tags: true
+    repo: rm3web/textblocks
+    node: '4'
