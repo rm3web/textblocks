@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+### Added
+ - Custom textblocks
+
 ## 0.0.10 - 2016-5-21
 ### Changed
  - BREAKING: Storage format now based on slabs.  Instead of storing just a single string for the 'htmltext' field, we now store an array of strings in the 'htmlslabs' field.

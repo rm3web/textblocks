@@ -389,4 +389,34 @@ describe('textblock', function() {
       }).should.throw('validating textblock with invalid block type');
     });
   });
+
+  describe('with custom sections', function() {
+    before (function() {
+      textblock.registerTextBlockType('custom', function(input, callback) {
+        setTimeout(function() {
+          callback(null, '{' + input.source + '}');
+        }, 10);
+      });
+    });
+
+    it('should forbid duplicate custom sections', function() {
+      (function() {
+        textblock.registerTextBlockType('custom', function(input, callback) {});
+      }).should.throw('Format custom already exists');
+    });
+
+    it ('should work correctly', function(cb) {
+      var inputBlock = {format: 'custom',
+        'source': 'curls'
+      };
+      textblock.outputTextBlock(inputBlock, function(err, text) {
+        if (err) {
+          should.fail();
+        }
+        text.should.equal('{curls}');
+        cb();
+
+      });
+    });
+  });
 });
