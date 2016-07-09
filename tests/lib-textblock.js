@@ -389,4 +389,53 @@ describe('textblock', function() {
       }).should.throw('validating textblock with invalid block type');
     });
   });
+
+  describe('with custom sections', function() {
+    before (function() {
+      textblock.registerTextBlockType('custom', function(block) {
+        if (block.hasOwnProperty('source')) {
+          var output = block.source;
+          return {source: output, format: 'custom'};
+        }
+        throw new Error('html block has neither source nor htmltext');
+      }, function(input, callback) {
+        setTimeout(function() {
+          callback(null, '{' + input.source + '}');
+        }, 10);
+      });
+    });
+
+    it('should forbid duplicate custom sections', function() {
+      (function() {
+        textblock.registerTextBlockType('custom',
+          function(input, callback) {},
+          function(input, callback) {});
+      }).should.throw('Format custom already exists');
+    });
+
+    it ('#validateTextBlock should work correctly', function() {
+      var inputBlock = {format: 'custom',
+        'source': 'curls'
+      };
+      var block = textblock.validateTextBlock(inputBlock, null);
+      block.should.have.property('source');
+      block.should.have.property('format');
+      block.source.should.equal('curls');
+      block.format.should.equal('custom');
+    });
+
+    it ('#outputTextBlock should work correctly', function(cb) {
+      var inputBlock = {format: 'custom',
+        'source': 'curls'
+      };
+      textblock.outputTextBlock(inputBlock, function(err, text) {
+        if (err) {
+          should.fail();
+        }
+        text.should.equal('{curls}');
+        cb();
+
+      });
+    });
+  });
 });
