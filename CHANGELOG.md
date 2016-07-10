@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## 0.0.13 - 2016-7-10
+### Changed
+ - BREAKING: Passing a pos string to `outputTextBlock`.
+
 ## 0.0.12 - 2016-7-10
 ### Changed
  - BREAKING: Passing a context object in `outputTextBlock`.
