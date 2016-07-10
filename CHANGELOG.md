@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
+### Changed
+ - BREAKING: Passing a context object in `outputTextBlock`.
 
 ## 0.0.11 - 2016-7-9
 ### Added

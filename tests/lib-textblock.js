@@ -35,7 +35,7 @@ describe('textblock', function() {
     var inputBlock = {format: 'gonzo',
       gonzo: 'zalgo'
     };
-    textblock.outputTextBlock(inputBlock, function(err, text) {
+    textblock.outputTextBlock(inputBlock, {}, function(err, text) {
       err.should.be.a('error');
       err.message.should.equal('unknown format: gonzo');
     });
@@ -56,7 +56,7 @@ describe('textblock', function() {
 
     it('#outputTextBlock should work', function() {
       var block = textblock.makeTextBlock(input,'markdown');
-      textblock.outputTextBlock(block, function(err, str) {
+      textblock.outputTextBlock(block, {}, function(err, str) {
         if (err) {
           should.fail();
         }
@@ -66,7 +66,7 @@ describe('textblock', function() {
 
     it('should handle zalgo unicode weirdness', function() {
       var block = textblock.makeTextBlock(zalgo + '\n\n' + awesome,'markdown');
-      textblock.outputTextBlock(block, function(err, str) {
+      textblock.outputTextBlock(block, {}, function(err, str) {
         if (err) {
           should.fail();
         }
@@ -113,7 +113,7 @@ describe('textblock', function() {
      */
     it('#makeTextBlock and #outputTextBlock should be a passthrough', function() {
       var block = textblock.makeTextBlock('<div>Test</div>','html');
-      textblock.outputTextBlock(block, function(err, str) {
+      textblock.outputTextBlock(block, {}, function(err, str) {
         if (err) {
           should.fail();
         }
@@ -123,7 +123,7 @@ describe('textblock', function() {
 
     it('should preserve zalgo unicode hilarity', function() {
       var block = textblock.makeTextBlock('<div>' + zalgo + awesome + '</div>','html');
-      textblock.outputTextBlock(block, function(err, str) {
+      textblock.outputTextBlock(block, {}, function(err, str) {
         if (err) {
           should.fail();
         }
@@ -133,7 +133,7 @@ describe('textblock', function() {
 
     it('should not preserve xss hilarity', function() {
       var block = textblock.makeTextBlock('<svg/onload=alert(document.domain)>','html');
-      textblock.outputTextBlock(block, function(err, str) {
+      textblock.outputTextBlock(block, {}, function(err, str) {
         if (err) {
           should.fail();
         }
@@ -202,7 +202,7 @@ describe('textblock', function() {
      */
     it('should work', function() {
       var block = textblock.makeTextBlock('<p>&blah\n\nblah','plainishtext');
-      textblock.outputTextBlock(block, function(err, str) {
+      textblock.outputTextBlock(block, {}, function(err, str) {
         if (err) {
           should.fail();
         }
@@ -215,7 +215,7 @@ describe('textblock', function() {
      */
     it('should preserve zalgo unicode hilarity', function() {
       var block = textblock.makeTextBlock(zalgo + '\n\n' + awesome,'plainishtext');
-      textblock.outputTextBlock(block, function(err, str) {
+      textblock.outputTextBlock(block, {}, function(err, str) {
         if (err) {
           should.fail();
         }
@@ -335,7 +335,7 @@ describe('textblock', function() {
     it('should make sections', function() {
       var block = textblock.makeTextBlock('&blah\n\nblah','plainishtext');
       var blocks = textblock.makeTextBlockSection(block);
-      textblock.outputTextBlock(blocks, function(err, str) {
+      textblock.outputTextBlock(blocks, {}, function(err, str) {
         if (err) {
           should.fail();
         }
@@ -398,7 +398,7 @@ describe('textblock', function() {
           return {source: output, format: 'custom'};
         }
         throw new Error('html block has neither source nor htmltext');
-      }, function(input, callback) {
+      }, function(input, ctx, callback) {
         setTimeout(function() {
           callback(null, '{' + input.source + '}');
         }, 10);
@@ -428,7 +428,7 @@ describe('textblock', function() {
       var inputBlock = {format: 'custom',
         'source': 'curls'
       };
-      textblock.outputTextBlock(inputBlock, function(err, text) {
+      textblock.outputTextBlock(inputBlock, {}, function(err, text) {
         if (err) {
           should.fail();
         }
