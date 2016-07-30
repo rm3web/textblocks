@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+### Removed
+ - Pragma blocks are gone; Custom textblocks do everything pragma blocks did and more.
+
 ## 0.0.13 - 2016-7-10
 ### Changed
  - BREAKING: Passing a pos string to `outputTextBlock`.
