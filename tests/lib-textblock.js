@@ -54,23 +54,25 @@ describe('textblock', function() {
       block.should.have.property('htmlslabs');
     });
 
-    it('#outputTextBlock should work', function() {
+    it('#outputTextBlock should work', function(cb) {
       var block = textblock.makeTextBlock(input,'markdown');
       textblock.outputTextBlock(block, 'fo', {}, function(err, str) {
         if (err) {
           should.fail();
         }
         str.should.equal('<h1>head</h1>\n<p>blah\nblah bla#h</p>\n<h1>head2</h1>\n<p>blah2</p>\n<h1>head3</h1>\n<h2>head4</h2>\n');
+        cb(err);
       });
     });
 
-    it('should handle zalgo unicode weirdness', function() {
+    it('should handle zalgo unicode weirdness', function(cb) {
       var block = textblock.makeTextBlock(zalgo + '\n\n' + awesome,'markdown');
       textblock.outputTextBlock(block, 'fo', {}, function(err, str) {
         if (err) {
           should.fail();
         }
         str.should.equal("<p>" + zalgo + "</p>\n<p>" + awesome + "</p>\n");
+        cb(err);
       });
     });
 
@@ -111,33 +113,36 @@ describe('textblock', function() {
     /*
      * Ensures that html is a passthrough
      */
-    it('#makeTextBlock and #outputTextBlock should be a passthrough', function() {
+    it('#makeTextBlock and #outputTextBlock should be a passthrough', function(cb) {
       var block = textblock.makeTextBlock('<div>Test</div>','html');
       textblock.outputTextBlock(block, 'fo', {}, function(err, str) {
         if (err) {
           should.fail();
         }
         str.should.equal("<div>Test</div>");
+        cb(err);
       });
     });
 
-    it('should preserve zalgo unicode hilarity', function() {
+    it('should preserve zalgo unicode hilarity', function(cb) {
       var block = textblock.makeTextBlock('<div>' + zalgo + awesome + '</div>','html');
       textblock.outputTextBlock(block, 'fo', {}, function(err, str) {
         if (err) {
           should.fail();
         }
         str.should.equal('<div>' + zalgo + awesome + '</div>');
+        cb(err);
       });
     });
 
-    it('should not preserve xss hilarity', function() {
+    it('should not preserve xss hilarity', function(cb) {
       var block = textblock.makeTextBlock('<svg/onload=alert(document.domain)>','html');
       textblock.outputTextBlock(block, 'fo', {}, function(err, str) {
         if (err) {
           should.fail();
         }
-        str.should.equal('');
+        str.should.equal('<svg></svg>');
+        cb(err);
       });
     });
 
@@ -200,26 +205,28 @@ describe('textblock', function() {
      * Ensures that we accept 'plainishtext' and that it gets encoded
      * as HTML properly
      */
-    it('should work', function() {
+    it('should work', function(cb) {
       var block = textblock.makeTextBlock('<p>&blah\n\nblah','plainishtext');
       textblock.outputTextBlock(block, 'fo', {}, function(err, str) {
         if (err) {
           should.fail();
         }
         str.should.equal("<p>&lt;p>&blah</p>\n<p>blah</p>");
+        cb(err);
       });
     });
 
     /*
      * Tests that unicode hilarity is preserved.
      */
-    it('should preserve zalgo unicode hilarity', function() {
+    it('should preserve zalgo unicode hilarity', function(cb) {
       var block = textblock.makeTextBlock(zalgo + '\n\n' + awesome,'plainishtext');
       textblock.outputTextBlock(block, 'fo', {}, function(err, str) {
         if (err) {
           should.fail();
         }
         str.should.equal("<p>" + zalgo + "</p>\n<p>" + awesome + "</p>");
+        cb(err);
       });
     });
 
@@ -237,7 +244,7 @@ describe('textblock', function() {
     /*
      * Tests that we can make a text block and then make sections out of it.
      */
-    it('should make sections', function() {
+    it('should make sections', function(cb) {
       var block = textblock.makeTextBlock('&blah\n\nblah','plainishtext');
       var blocks = textblock.makeTextBlockSection(block);
       textblock.outputTextBlock(blocks, 'fo', {}, function(err, str) {
@@ -245,10 +252,11 @@ describe('textblock', function() {
           should.fail();
         }
         str.should.equal("<p>&blah</p>\n<p>blah</p>");
+        cb(err);
       });
     });
 
-    it('should make arrays of sections', function() {
+    it('should make arrays of sections', function(cb) {
       var block1 = textblock.makeTextBlock('&blah\n\nblah','plainishtext');
       var block2 = textblock.makeTextBlock('&blah\n\nblah','plainishtext');
       var blocks = textblock.makeTextBlockSection([block1, block2]);
@@ -257,6 +265,7 @@ describe('textblock', function() {
           should.fail();
         }
         str.should.equal("<p>&blah</p>\n<p>blah</p><p>&blah</p>\n<p>blah</p>");
+        cb(err);
       });
     });
 
@@ -361,6 +370,55 @@ describe('textblock', function() {
         text.should.equal('{curls}[fo_0]{bunny}[fo_1]');
         cb();
 
+      });
+    });
+  });
+
+  describe('with textual enhancement', function() {
+    before (function() {
+      textblock.registerEnhancement('fl',function enhanceHtml($, generatePlaceholder) {
+        $('img').each(function(i, elem) {
+          var srcUrl = $(this).attr('src');
+          var placeholder;
+          if (srcUrl === '/blah/') {
+            placeholder = generatePlaceholder($, 'fl', $(this).attr(''));
+            $(this).replaceWith(placeholder);
+          }
+          if (srcUrl === '/error/') {
+            placeholder = generatePlaceholder($, 'fl', {'error': true});
+            $(this).replaceWith(placeholder);
+          }
+        });
+      }, function(input, callback) {
+        setTimeout(function() {
+          if (input.hasOwnProperty('error')) {
+            return callback(new Error('error'));
+          }
+          callback(null, 'fffffff');
+        }, 10);
+      });
+    });
+
+    it('#validateTextBlock and #outputTextBlock should work', function(cb) {
+      var inBlock = textblock.makeTextBlock('<img src="/blah/"><p>Do stuf</p><p>More stuf</p><img src="http://www.example.org/">','html');
+      var block = textblock.validateTextBlock(inBlock);
+      textblock.outputTextBlock(block, 'fo', {}, function(err, str) {
+        if (err) {
+          should.fail();
+        }
+        str.should.equal('fffffff<p>Do stuf</p><p>More stuf</p><img src="http://www.example.org/">');
+        cb(err);
+      });
+    });
+
+    it('#outputTextBlock should handle errors', function(cb) {
+      var inBlock = textblock.makeTextBlock('<img src="/error/"><p>Do stuf</p><p>More stuf</p><img src="http://www.example.org/">','html');
+      var block = textblock.validateTextBlock(inBlock);
+      textblock.outputTextBlock(block, 'fo', {}, function(err, str) {
+        if (err) {
+          cb();
+        }
+        should.fail();
       });
     });
   });

@@ -2,27 +2,35 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## [Unreleased]
+### Added
+ - Textual enrichment allows users to replace tags with intelligent content at render time.
+
+### Changed
+ - Replaced caja with DOMPurify
+
+### Fixed
+ - Some of the unit tests weren't set up to work as async.
 
 ### Removed
  - Pragma blocks are gone; Custom textblocks do everything pragma blocks did and more.
 
-## 0.0.13 - 2016-7-10
+## [0.0.13] - 2016-7-10
 ### Changed
  - BREAKING: Passing a pos string to `outputTextBlock`.
 
-## 0.0.12 - 2016-7-10
+## [0.0.12] - 2016-7-10
 ### Changed
  - BREAKING: Passing a context object in `outputTextBlock`.
 
-## 0.0.11 - 2016-7-9
+## [0.0.11] - 2016-7-9
 ### Added
  - Custom textblocks
 
 ### Changed
  - Updated deps
 
-## 0.0.10 - 2016-5-21
+## [0.0.10] - 2016-5-21
 ### Changed
  - BREAKING: Storage format now based on slabs.  Instead of storing just a single string for the 'htmltext' field, we now store an array of strings in the 'htmlslabs' field.
  - BREAKING: Restoring async interface.
@@ -33,7 +41,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Removed
  - atxplaintext
 
-## 0.0.9 - 2016-1-10
+## [0.0.9] - 2016-1-10
 ### Added
  - Changelog, for the first time
  - Moved git repo.
@@ -89,3 +97,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 0.0.1
 ### Added
  - Initial version
+
+[Unreleased]: https://github.com/rm3web/textblocks/compare/v0.0.13...HEAD
+[0.0.13]: https://github.com/rm3web/textblocks/compare/v0.0.12...v0.0.13
+[0.0.12]: https://github.com/rm3web/textblocks/compare/v0.0.11...v0.0.12
+[0.0.11]: https://github.com/rm3web/textblocks/compare/v0.0.10...v0.0.11
+[0.0.10]: https://github.com/rm3web/textblocks/compare/v0.0.9...v0.0.10
+[0.0.9]: https://github.com/rm3web/textblocks/compare/v0.0.8...v0.0.9
