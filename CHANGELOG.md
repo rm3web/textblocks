@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [0.0.14] - 2016-7-30
 ### Added
  - Textual enrichment allows users to replace tags with intelligent content at render time.
 

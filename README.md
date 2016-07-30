@@ -59,7 +59,7 @@ var outputTextblock = textblock.validateTextBlock(textblock);
 ### How do I output a stored textblock?
 
 ```node
-var outputString = textblock.outputTextBlock(textblock, function(err, text) {
+var outputString = textblock.outputTextBlock(textblock, 'block', {context: 'here'}, function(err, text) {
   if (err) {
     // The render failed
   } else {
@@ -67,6 +67,8 @@ var outputString = textblock.outputTextBlock(textblock, function(err, text) {
   }
 });
 ```
+
+(The `block` paramater is the 'name' of the section, for binding interactive components, and the `{context:'here'}` section is passed to custom rendering functions, so you can pass in a DB connection or the like)
 
 ## Is it fast?
 
