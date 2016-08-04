@@ -25,7 +25,7 @@
     "istanbul": "^0.4.1",
     "jsdox": "^0.4.9",
     "matcha": "^0.7.0",
-    "mocha": "^2.2.5"
+    "mocha": "^3.0.1"
   },
   "engines": {
     "node": "4.x || 5.x",
