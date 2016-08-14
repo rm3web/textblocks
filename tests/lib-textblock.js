@@ -269,6 +269,14 @@ describe('textblock', function() {
       });
     });
 
+    it('#extractTextBlockText should work', function() {
+      var block1 = textblock.makeTextBlock('&blah\n\nblah','plainishtext');
+      var block2 = textblock.makeTextBlock('&blah\n\nblah','plainishtext');
+      var inBlock = textblock.makeTextBlockSection([block1, block2]);
+      var str = textblock.extractTextBlockText(inBlock);
+      str.should.equal('&blah\nblah&blah\nblah')
+    });
+
     describe('#validateTextBlock', function() {
       it ('should work', function() {
         var inputblock = {format: 'section',
@@ -336,6 +344,14 @@ describe('textblock', function() {
       block.should.have.property('format');
       block.source.should.equal('curls');
       block.format.should.equal('custom');
+    });
+
+    it('#extractTextBlockText should ignore', function() {
+      var inBlock = {format: 'custom',
+        'source': 'curls'
+      };
+      var str = textblock.extractTextBlockText(inBlock);
+      str.should.equal('')
     });
 
     it ('#outputTextBlock should work correctly', function(cb) {
@@ -409,6 +425,12 @@ describe('textblock', function() {
         str.should.equal('fffffff<p>Do stuf</p><p>More stuf</p><img src="http://www.example.org/">');
         cb(err);
       });
+    });
+
+    it('#extractTextBlockText should work', function() {
+      var inBlock = textblock.makeTextBlock('<img src="/blah/"><p>Do stuf</p><p>More stuf</p><img src="http://www.example.org/">','html');
+      var str = textblock.extractTextBlockText(inBlock);
+      str.should.equal('Do stufMore stuf')
     });
 
     it('#outputTextBlock should handle errors', function(cb) {
