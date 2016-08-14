@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+ - `extractTextBlockText` to get just the text and ignore all custom block types.
+
+### Changed
+ - Updated deps
 
 ## [0.0.14] - 2016-7-30
 ### Added
