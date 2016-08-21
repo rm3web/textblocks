@@ -405,7 +405,7 @@ describe('textblock', function() {
             $(this).replaceWith(placeholder);
           }
         });
-      }, function(input, callback) {
+      }, function(input, ctx, callback) {
         setTimeout(function() {
           if (input.hasOwnProperty('error')) {
             return callback(new Error('error'));

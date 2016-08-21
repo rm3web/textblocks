@@ -2,7 +2,7 @@
   "name": "textblocks",
   "description": "A library for slinging blocks of text",
   "main": "./lib/textblock.js",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "repository": {
     "type": "git",
     "url": "git@github.com:rm3web/textblocks.git"
@@ -12,7 +12,8 @@
     "cheerio": "^0.20.0",
     "dompurify": "^0.8.2",
     "jsdom": "^9.4.1",
-    "markdown-it": "^7.0.0",
+    "markdown-it": "^7.0.1",
+    "markdown-it-attrs": "^0.6.3",
     "striptags": "^2.1.1",
     "xss-filters": "^1.2.0"
   },

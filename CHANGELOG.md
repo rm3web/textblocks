@@ -4,6 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.0.16] - 2016-8-21
+### Added
+ - Textual Enrichment needs to pass a context the same way custom blocks does.
+ - Markdown-it-attrs added
+
+### Changed
+ - Updated deps
+
 ## [0.0.15] - 2016-8-14
 ### Added
  - `extractTextBlockText` to get just the text and ignore all custom block types.
@@ -107,7 +115,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
  - Initial version
 
-[Unreleased]: https://github.com/rm3web/textblocks/compare/v0.0.15...HEAD
+[Unreleased]: https://github.com/rm3web/textblocks/compare/v0.0.16...HEAD
+[0.0.15]: https://github.com/rm3web/textblocks/compare/v0.0.15...v0.0.16
 [0.0.15]: https://github.com/rm3web/textblocks/compare/v0.0.14...v0.0.15
 [0.0.14]: https://github.com/rm3web/textblocks/compare/v0.0.13...v0.0.14
 [0.0.13]: https://github.com/rm3web/textblocks/compare/v0.0.12...v0.0.13
