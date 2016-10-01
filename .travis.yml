@@ -12,3 +12,6 @@ deploy:
     tags: true
     repo: rm3web/textblocks
     node: '4'
+cache:
+  directories:
+    - node_modules
