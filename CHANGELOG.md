@@ -3,9 +3,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [0.0.17] - 2016-10-09
 ### Changed
  - Updated deps
  - Allowable markdown changed to allow GFM-styled tables.
+ - Add [markdown-it-deflist](https://www.npmjs.com/package/markdown-it-deflist) as default
+ - Export the markdown object so that the user can apply further customizations.
 
 ## [0.0.16] - 2016-8-21
 ### Added
@@ -118,7 +122,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
  - Initial version
 
-[Unreleased]: https://github.com/rm3web/textblocks/compare/v0.0.16...HEAD
+[Unreleased]: https://github.com/rm3web/textblocks/compare/v0.0.17...HEAD
+[0.0.17]: https://github.com/rm3web/textblocks/compare/v0.0.16...v0.0.17
 [0.0.16]: https://github.com/rm3web/textblocks/compare/v0.0.15...v0.0.16
 [0.0.15]: https://github.com/rm3web/textblocks/compare/v0.0.14...v0.0.15
 [0.0.14]: https://github.com/rm3web/textblocks/compare/v0.0.13...v0.0.14
