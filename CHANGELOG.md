@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Changed
+ - Updated deps
+ - Allowable markdown changed to allow GFM-styled tables.
 
 ## [0.0.16] - 2016-8-21
 ### Added
@@ -116,7 +119,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
  - Initial version
 
 [Unreleased]: https://github.com/rm3web/textblocks/compare/v0.0.16...HEAD
-[0.0.15]: https://github.com/rm3web/textblocks/compare/v0.0.15...v0.0.16
+[0.0.16]: https://github.com/rm3web/textblocks/compare/v0.0.15...v0.0.16
 [0.0.15]: https://github.com/rm3web/textblocks/compare/v0.0.14...v0.0.15
 [0.0.14]: https://github.com/rm3web/textblocks/compare/v0.0.13...v0.0.14
 [0.0.13]: https://github.com/rm3web/textblocks/compare/v0.0.12...v0.0.13
