@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Changed
+ - Updated deps
+ - Fixed lint
 
 ## [0.0.17] - 2016-10-09
 ### Changed
