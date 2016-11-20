@@ -88,7 +88,7 @@ describe('textblock', function() {
 
       it ('should remove bad keys', function() {
         var inputblock = {format: 'markdown', htmltext: 'fer',
-           gonzo: 'ponies', source: '# get'};
+          gonzo: 'ponies', source: '# get'};
         var block = textblock.validateTextBlock(inputblock);
         block.should.have.property('format');
         block.format.should.equal('markdown');
@@ -158,7 +158,7 @@ describe('textblock', function() {
 
       it ('should remove bad keys', function() {
         var inputblock = {format: 'html',
-           gonzo: 'ponies', source: '<div>Test</div>'};
+          gonzo: 'ponies', source: '<div>Test</div>'};
         var block = textblock.validateTextBlock(inputblock);
         block.should.have.property('format');
         block.format.should.equal('html');
@@ -170,7 +170,7 @@ describe('textblock', function() {
 
       it ('should also accept htmltext', function() {
         var inputblock = {format: 'html',
-           source: '<div>Test</div>'};
+          source: '<div>Test</div>'};
         var block = textblock.validateTextBlock(inputblock);
         block.should.have.property('format');
         block.format.should.equal('html');
