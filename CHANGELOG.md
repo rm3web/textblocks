@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [0.0.18] - 2017-01-01
 ### Added
  - Textual Enrichment needs to pass a context while generating placeholders.
 
@@ -128,7 +130,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
  - Initial version
 
-[Unreleased]: https://github.com/rm3web/textblocks/compare/v0.0.17...HEAD
+[Unreleased]: https://github.com/rm3web/textblocks/compare/v0.0.18...HEAD
+[0.0.18]: https://github.com/rm3web/textblocks/compare/v0.0.17...v0.0.18
 [0.0.17]: https://github.com/rm3web/textblocks/compare/v0.0.16...v0.0.17
 [0.0.16]: https://github.com/rm3web/textblocks/compare/v0.0.15...v0.0.16
 [0.0.15]: https://github.com/rm3web/textblocks/compare/v0.0.14...v0.0.15
