@@ -392,10 +392,11 @@ describe('textblock', function() {
 
   describe('with textual enhancement', function() {
     before (function() {
-      textblock.registerEnhancement('fl',function enhanceHtml($, generatePlaceholder) {
+      textblock.registerEnhancement('fl',function enhanceHtml($, generatePlaceholder, ctx) {
         $('img').each(function(i, elem) {
           var srcUrl = $(this).attr('src');
           var placeholder;
+          ctx.passed.should.equal(true);
           if (srcUrl === '/blah/') {
             placeholder = generatePlaceholder($, 'fl', $(this).attr(''));
             $(this).replaceWith(placeholder);
@@ -416,8 +417,8 @@ describe('textblock', function() {
     });
 
     it('#validateTextBlock and #outputTextBlock should work', function(cb) {
-      var inBlock = textblock.makeTextBlock('<img src="/blah/"><p>Do stuf</p><p>More stuf</p><img src="http://www.example.org/">','html');
-      var block = textblock.validateTextBlock(inBlock);
+      var inBlock = textblock.makeTextBlock('<img src="/blah/"><p>Do stuf</p><p>More stuf</p><img src="http://www.example.org/">','html', {passed: true});
+      var block = textblock.validateTextBlock(inBlock, {passed: true});
       textblock.outputTextBlock(block, 'fo', {}, function(err, str) {
         if (err) {
           should.fail();
@@ -428,14 +429,14 @@ describe('textblock', function() {
     });
 
     it('#extractTextBlockText should work', function() {
-      var inBlock = textblock.makeTextBlock('<img src="/blah/"><p>Do stuf</p><p>More stuf</p><img src="http://www.example.org/">','html');
+      var inBlock = textblock.makeTextBlock('<img src="/blah/"><p>Do stuf</p><p>More stuf</p><img src="http://www.example.org/">','html', {passed: true});
       var str = textblock.extractTextBlockText(inBlock);
       str.should.equal('Do stufMore stuf');
     });
 
     it('#outputTextBlock should handle errors', function(cb) {
-      var inBlock = textblock.makeTextBlock('<img src="/error/"><p>Do stuf</p><p>More stuf</p><img src="http://www.example.org/">','html');
-      var block = textblock.validateTextBlock(inBlock);
+      var inBlock = textblock.makeTextBlock('<img src="/error/"><p>Do stuf</p><p>More stuf</p><img src="http://www.example.org/">','html', {passed: true});
+      var block = textblock.validateTextBlock(inBlock, {passed: true});
       textblock.outputTextBlock(block, 'fo', {}, function(err, str) {
         if (err) {
           cb();
