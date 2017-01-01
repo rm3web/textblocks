@@ -416,6 +416,19 @@ describe('textblock', function() {
       });
     });
 
+    it('#validateTextBlock and #outputTextBlock should work with sections', function(cb) {
+      var inBlock = textblock.makeTextBlock('<img src="/blah/"><p>Do stuf</p><p>More stuf</p><img src="http://www.example.org/">','html', {passed: true});
+      var inBlocks = textblock.makeTextBlockSection(inBlock);
+      var block = textblock.validateTextBlock(inBlocks, {passed: true});
+      textblock.outputTextBlock(block, 'fo', {}, function(err, str) {
+        if (err) {
+          should.fail();
+        }
+        str.should.equal('fffffff<p>Do stuf</p><p>More stuf</p><img src="http://www.example.org/">');
+        cb(err);
+      });
+    });
+
     it('#validateTextBlock and #outputTextBlock should work', function(cb) {
       var inBlock = textblock.makeTextBlock('<img src="/blah/"><p>Do stuf</p><p>More stuf</p><img src="http://www.example.org/">','html', {passed: true});
       var block = textblock.validateTextBlock(inBlock, {passed: true});
