@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- `deleteTextBlockFormat` added, for if you want to remove a specific block type.
 
 ## [0.0.19] - 2017-01-01
 ### Fixed
