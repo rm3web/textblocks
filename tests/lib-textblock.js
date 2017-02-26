@@ -31,6 +31,13 @@ describe('textblock', function() {
     }).should.throw('invalid format for textblock');
   });
 
+  it('#deleteTextBlockFormat should reject non-Objects', function() {
+    var inputBlock = '{"goo":"goo"}';
+    (function() {
+      var block = textblock.deleteTextBlockFormat(inputBlock);
+    }).should.throw('invalid format for textblock');
+  });
+
   it('#outputTextBlock should reject invalid blocks', function() {
     var inputBlock = {format: 'gonzo',
       gonzo: 'zalgo'
@@ -297,6 +304,57 @@ describe('textblock', function() {
         block.blocks[0].should.have.property('source');
         block.blocks[1].should.have.property('format');
         block.blocks[1].should.have.property('htmlslabs');
+      });
+    });
+
+    describe('#deleteTextBlockFormat', function() {
+      it ('should delete the first in a section', function() {
+        var inputblock = {format: 'section',
+          maxnum: 134,
+          blocks: [
+            {format: 'plainishtext', source: 'blah blah'},
+            {format: 'html', source: '<h1>blah</h1>', mf: 'et'}
+          ]
+        };
+        var block = textblock.deleteTextBlockFormat(inputblock, 'html');
+        block.should.have.property('format');
+        block.format.should.equal('section');
+        block.should.not.have.property('source');
+        block.should.not.have.property('htmltext');
+        block.should.not.have.property('maxnum');
+        block.blocks[0].should.have.property('format');
+        block.blocks[0].should.have.property('source');
+        block.blocks.length.should.equal(1);
+      });
+
+      it ('should delete the second in a section', function() {
+        var inputblock = {format: 'section',
+          maxnum: 134,
+          blocks: [
+            {format: 'plainishtext', source: 'blah blah'},
+            {format: 'html', source: '<h1>blah</h1>'}
+          ]
+        };
+        var block = textblock.deleteTextBlockFormat(inputblock, 'plainishtext');
+        block.should.have.property('format');
+        block.format.should.equal('section');
+        block.should.not.have.property('source');
+        block.should.not.have.property('htmltext');
+        block.should.not.have.property('maxnum');
+        block.blocks[0].should.have.property('format');
+        block.blocks[0].should.have.property('source');
+        block.blocks.length.should.equal(1);
+      });
+
+      it ('should delete the second in a section', function() {
+        var inputblock = {format: 'section',
+          blocks: [
+            {format: 'html', source: 'blah blah'},
+            {format: 'html', source: '<h1>blah</h1>'}
+          ]
+        };
+        var block = textblock.deleteTextBlockFormat(inputblock, 'html');
+        should.not.exist(block);
       });
     });
 
