@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [0.0.20] - 2017-02-25
 ### Added
 - `deleteTextBlockFormat` added, for if you want to remove a specific block type.
 
@@ -136,8 +138,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
  - Initial version
 
-[Unreleased]: https://github.com/rm3web/textblocks/compare/v0.0.19...HEAD
-[0.0.18]: https://github.com/rm3web/textblocks/compare/v0.0.18...v0.0.19
+[Unreleased]: https://github.com/rm3web/textblocks/compare/v0.0.20...HEAD
+[0.0.20]: https://github.com/rm3web/textblocks/compare/v0.0.18...v0.0.20
+[0.0.19]: https://github.com/rm3web/textblocks/compare/v0.0.18...v0.0.19
 [0.0.18]: https://github.com/rm3web/textblocks/compare/v0.0.17...v0.0.18
 [0.0.17]: https://github.com/rm3web/textblocks/compare/v0.0.16...v0.0.17
 [0.0.16]: https://github.com/rm3web/textblocks/compare/v0.0.15...v0.0.16
