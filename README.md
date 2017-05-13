@@ -1,5 +1,7 @@
 # Text Blocks
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/rm3web/textblocks.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/rm3web/textblocks.svg?branch=master)](https://travis-ci.org/rm3web/textblocks)[![Dependency Status](https://david-dm.org/rm3web/textblocks.svg)](https://david-dm.org/rm3web/textblocks)[![devDependency Status](https://david-dm.org/rm3web/textblocks/dev-status.svg)](https://david-dm.org/rm3web/textblocks#info=devDependencies)[![npm version](https://badge.fury.io/js/textblocks.svg)](https://www.npmjs.com/package/textblocks)[![codecov](https://codecov.io/gh/rm3web/textblocks/branch/master/graph/badge.svg)](https://codecov.io/gh/rm3web/textblocks)
 
 While slinging structured text, it's kinda nice to be able to not have to be too concerned with exactly how your text is formatted, so that you can just say "Hey, this area's a structured text block" and not worry if the user wants to publish their content in Markdown or HTML or whatever.
