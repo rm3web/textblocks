@@ -10,7 +10,7 @@
   "dependencies": {
     "async": "^2.4.0",
     "cheerio": "^0.22.0",
-    "dompurify": "^0.8.2",
+    "dompurify": "^0.9.0",
     "jsdom": "^9.4.1",
     "markdown-it": "^8.0.0",
     "markdown-it-attrs": "^0.8.0",
