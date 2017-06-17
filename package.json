@@ -23,7 +23,7 @@
     "chai": "^4.0.1",
     "codecov": "^2.1.0",
     "eslint": "^3.10.2",
-    "eslint-plugin-no-only-tests": "^1.1.0",
+    "eslint-plugin-no-only-tests": "^2.0.0",
     "eslint-plugin-node": "^4.0.0",
     "istanbul": "^0.4.1",
     "jsdox": "^0.4.9",
