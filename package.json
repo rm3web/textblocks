@@ -31,8 +31,8 @@
     "mocha": "^4.1.0"
   },
   "engines": {
-    "node": "4.x || 5.x",
-    "npm": "2.x || 3.x"
+    "node": "4.x || 5.x || 6.x || 8.x",
+    "npm": "2.x || 3.x || 4.x || 5.x || 6.x"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha tests/*.js",
