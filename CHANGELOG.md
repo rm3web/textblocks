@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.0.22] - 2017-06-17
+### Changed
+ - Updated deps
+ - Added support for new node versions.
+
 ## [0.0.21] - 2017-06-17
 ### Changed
  - Updated deps
