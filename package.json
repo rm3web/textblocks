@@ -24,7 +24,7 @@
     "codecov": "^3.0.0",
     "eslint": "^4.1.0",
     "eslint-plugin-no-only-tests": "^2.0.0",
-    "eslint-plugin-node": "^5.0.0",
+    "eslint-plugin-node": "^6.0.1",
     "istanbul": "^0.4.1",
     "jsdox": "^0.4.9",
     "matcha": "^0.7.0",
