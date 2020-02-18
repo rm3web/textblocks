@@ -10,8 +10,8 @@
   "dependencies": {
     "async": "^2.4.0",
     "cheerio": "^0.22.0",
-    "dompurify": "^0.9.0",
-    "jsdom": "^9.4.1",
+    "dompurify": "^2.0.8",
+    "jsdom": "^15.2.1",
     "markdown-it": "^8.0.0",
     "markdown-it-attrs": "^1.0.0",
     "markdown-it-deflist": "^2.0.1",
@@ -21,24 +21,24 @@
   "license": "BSD-2-Clause",
   "devDependencies": {
     "chai": "^4.0.1",
-    "codecov": "^3.0.0",
-    "eslint": "^4.1.0",
+    "codecov": "^3.6.5",
+    "eslint": "^4.18.2",
     "eslint-plugin-no-only-tests": "^2.0.0",
     "eslint-plugin-node": "^6.0.1",
-    "istanbul": "^0.4.1",
+    "nyc": "^15.0.0",
     "jsdox": "^0.4.9",
     "matcha": "^0.7.0",
     "mocha": "^4.1.0"
   },
   "engines": {
-    "node": "4.x || 5.x || 6.x || 8.x",
+    "node": "8.x",
     "npm": "2.x || 3.x || 4.x || 5.x || 6.x"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha tests/*.js",
     "benchmark": "./node_modules/.bin/matcha benchmark/*.js",
-    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha tests/*.js",
-    "travis": "npm run lint && ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha tests/*.js --report lcovonly && codecov",
+    "coverage": "./node_modules/.bin/nyc ./node_modules/.bin/_mocha tests/*.js",
+    "travis": "npm run lint && ./node_modules/.bin/nyc ./node_modules/.bin/_mocha tests/*.js && codecov",
     "lint": "./node_modules/.bin/eslint lib tests benchmark",
     "docs": "./node_modules/.bin/jsdox -A --output ./docs/ lib"
   }
