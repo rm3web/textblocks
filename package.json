@@ -11,7 +11,7 @@
     "async": "^2.4.0",
     "cheerio": "^0.22.0",
     "dompurify": "^2.0.8",
-    "jsdom": "^9.12.0",
+    "jsdom": "^15.2.1",
     "markdown-it": "^8.0.0",
     "markdown-it-attrs": "^1.0.0",
     "markdown-it-deflist": "^2.0.1",
