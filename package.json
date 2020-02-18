@@ -2,7 +2,7 @@
   "name": "textblocks",
   "description": "A library for slinging blocks of text",
   "main": "./lib/textblock.js",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "repository": {
     "type": "git",
     "url": "git@github.com:rm3web/textblocks.git"
