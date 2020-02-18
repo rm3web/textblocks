@@ -1,8 +1,5 @@
 language: node_js
 node_js:
-- '4'
-- '5'
-- '6'
 - '8'
 script: npm run travis
 deploy:
@@ -13,7 +10,7 @@ deploy:
   on:
     tags: true
     repo: rm3web/textblocks
-    node: '4'
+    node: '8'
 cache:
   directories:
     - node_modules
